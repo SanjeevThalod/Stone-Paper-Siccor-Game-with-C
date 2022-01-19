@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int randomnumber(){
+    srand(time(NULL));
+    return rand()%2;
+}
+
+int points(int user,int z, int score){
+    if (user == 0)
+        {
+            if (z == 1)
+            {
+                score = score - 1;
+            } else if (z == 0)
+            {
+                score = score + 0;
+            }  else if (z == 2)
+            {
+                score = score + 1;
+            }
+        } else if (user == 1)
+        {
+            if (z == 0)
+            {
+                score = score + 1;
+            } else if (z == 1)
+            {
+                score = score + 0;
+            } else if (z == 2)
+            {
+                score = score - 1;
+            }
+        } else if (user == 2)
+        {
+            if (z == 0)
+            {
+                score = score - 1;
+            } else if (z == 1)
+            {
+                score = score + 1;
+            } else if (z == 2)
+            {
+                score = score + 0;
+            }
+        }
+        return score;
+    }
+
+int main(){
+    char *ptr;
+    ptr = (char*) malloc(15*sizeof(char));
+    printf("Enter your name: ");
+    scanf("%s",ptr);
+
+    int round;
+    printf("Enter No. of rounds: ");
+    scanf("%d",&round);
+
+    printf("\n");
+
+    int score = 0;
+    int user;
+
+    while (round > 0)
+    {
+        printf("%s enter\n 0 for Stone \n 1 for Paper \n 2 for Siccor: ",ptr);
+        scanf("%d",&user);
+
+        printf("\n");
+        
+        int z = randomnumber();
+        printf("%s choosed %d \n",ptr,user);
+        printf("The computer choosed %d \n",z);
+
+        int x = points(user, z, score);
+
+        printf("Your score is %d \n",x);
+        printf("\n");
+        round--;
+    }
+    free(ptr);
+    return 0;
+}
